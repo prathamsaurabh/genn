@@ -11,17 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: sudo apt-get update && sudo apt-get install -y build-essential make
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential make libffi-dev
 
-    - name: Build GeNN
-      run: |
-        make
+      - name: Build GeNN
+        run: make
 
-    - name: Run MNIST Example
-      run: |
-        cd examples/MNIST
-        make run
+      - name: Run MNIST Example
+        run: |
+          cd examples/MNIST
+          make run
 

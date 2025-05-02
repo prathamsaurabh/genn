@@ -7,14 +7,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Install clang-format
         run: sudo apt-get install -y clang-format
 
-      - name: Check code style
+      - name: Run clang-format style check
         run: |
-          find . -regex '.*\.\(cpp\|cc\|c\|h\|hpp\)' \
+          find ./src ./examples -regex '.*\.\(cpp\|cc\|c\|h\|hpp\)' \
             -exec clang-format --dry-run --Werror {} +
 
