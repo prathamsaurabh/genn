@@ -151,3 +151,26 @@ For more details on how to use GeNN, please see [documentation](http://genn-team
 
 [@Potjans2014]: https://doi.org/10.1093/cercor/bhs358 "Potjans, T. C., & Diesmann, M. The Cell-Type Specific Cortical Microcircuit: Relating Structure and Activity in a Full-Scale Spiking Network Model. Cerebral Cortex, 24(3), 785–806 (2014)"
 [@Zenke2018]: https://doi.org/10.1162/neco_a_01086  "Zenke, F., & Ganguli, S. (2018). SuperSpike: Supervised Learning in Multilayer Spiking Neural Networks. Neural Computation, 30(6), 1514–1541."
+
+## ✅ Continuous Integration (CPU Only)
+
+This repository uses GitHub Actions to automatically build and test GeNN on CPU.
+
+### 🔧 Workflow Setup
+- Location: `.github/workflows/cpu-ci.yml`
+- Trigger: Push or pull request to `master` branch
+
+### ⚙️ What It Does
+- Installs dependencies (`build-essential`, `make`)
+- Builds GeNN using `make`
+- Runs the `examples/MNIST` model to validate the build
+
+### 💡 Notes
+- No GPU/EC2 needed for current setup
+- Uses GitHub-hosted `ubuntu-latest` runners
+- Future enhancement: Add GPU CI with a self-hosted runner on AWS EC2 (`g4dn.xlarge`)
+
+### 💵 Estimated Cost (Future GPU Phase)
+- AWS EC2 `g4dn.xlarge`: ~$0.52/hour
+- NVIDIA Driver: `nvidia-driver-525` on Ubuntu 20.04
+
