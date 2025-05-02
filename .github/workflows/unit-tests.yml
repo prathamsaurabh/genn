@@ -1,0 +1,25 @@
+name: Unit Tests (MNIST Output Check)
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install build tools
+        run: sudo apt-get update && sudo apt-get install -y build-essential make
+
+      - name: Build and run MNIST
+        run: |
+          make
+          cd examples/MNIST
+          make run > output.txt
+
+      - name: Check output for expected result
+        run: |
+          grep -q "Spiking Neurons" output.txt || (echo "Expected output not found!" && exit 1)
+

@@ -1,0 +1,22 @@
+name: Release on Tag
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build project
+        run: make
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: lib/libgenn_single_threaded_cpu_backend.a
+
